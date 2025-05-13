@@ -1,9 +1,31 @@
 import Lottie from 'lottie-react';
-import React from 'react';
+import React, { useContext } from 'react';
 import loginAnimation from '../assets/loginAnimation.json'
 import { Link } from 'react-router-dom';
+import AuthContext from '../Authontication/Authcontext';
 
 const Register = () => {
+
+    const { signupWithEmailAndPassword } = useContext(AuthContext)
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const form = e.target;
+        const email = form.email.value
+        const name = form.name.value
+        const photoURL = form.photoURL.value
+        const password = form.password.value
+
+        console.log(name, email, photoURL, password);
+        signupWithEmailAndPassword(email, password)
+            .then(result => {
+                console.log(result.user);
+            })
+            .catch(error => {
+                console.log(error.message);
+            })
+    }
+
     return (
         <div className="hero bg-base-200 min-h-screen flex items-center justify-center">
             <div className="hero-content flex-col gap-20 lg:flex-row-reverse">
@@ -13,15 +35,20 @@ const Register = () => {
                 </div>
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                     <div className="card-body">
-                        <form className="fieldset">
+                        <form onSubmit={handleSubmit} className="fieldset">
+
                             <label className="label">Email</label>
-                            <input type="email" className="input" placeholder="Email" />
+                            <input name='email' type="email" className="input" placeholder="Email" />
+
                             <label className="label">Name</label>
-                            <input type="text" className="input" placeholder="Write Your Name" />
+                            <input name='name' type="text" className="input" placeholder="Write Your Name" />
+
                             <label className="label">Photo URL</label>
-                            <input type="url" className="input" placeholder="Write Your Photo URL" />
+                            <input name='photoURL' type="text" className="input" placeholder="Write Your Photo URL" />
+
                             <label className="label">Password</label>
-                            <input type="password" className="input" placeholder="Password" />
+                            <input name='password' type="password" className="input" placeholder="Password" />
+
                             <div><a className="link link-hover">Forgot password?</a></div>
                             <button className="btn btn-neutral mt-4">Signup</button>
                         </form>

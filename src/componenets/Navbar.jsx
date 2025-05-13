@@ -9,14 +9,14 @@ const Navbar = () => {
             <Link to={''}>Services</Link>
             <details className="dropdown">
                 <summary className="btn btn-ghost">Dashboard</summary>
-                <ul className="menu w-40 items-center gap-2 bg-gray-800 dropdown-content  ">
+                <div className="menu w-40 items-center gap-2 bg-gray-800 dropdown-content  ">
                     <Link to={''}>Add Service</Link>
                     <Link to={''}>Manage Service
                     </Link>
                     <Link to={''}>Booked-Services
                     </Link>
                     <Link to={''}>Service-To-Do</Link>
-                </ul>
+                </div>
             </details>
         </div>
     ]

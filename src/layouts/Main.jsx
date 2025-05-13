@@ -8,7 +8,7 @@ const Main = () => {
             {/* Navbar */}
             <Navbar></Navbar>
             {/* Outlet */}
-            <div className='w-11/12 mx-auto'>
+            <div className='w-11/12 mx-auto min-h-screen'>
                 <Outlet></Outlet>
             </div>
         </div>

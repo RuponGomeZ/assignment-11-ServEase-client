@@ -1,17 +1,14 @@
-import React from 'react';
+import Lottie from 'lottie-react';
 import { Link } from 'react-router-dom';
-
+import loginAnimation from '../assets/loginAnimation.json'
 const Login = () => {
     return (
         <div>
-            <div className="hero bg-base-200 min-h-screen">
-                <div className="hero-content flex-col lg:flex-row-reverse">
+            <div className="hero bg-base-200 min-h-screen flex items-center justify-center">
+                <div className="hero-content flex-col gap-20 lg:flex-row-reverse">
                     <div className="text-center lg:text-left">
                         <h1 className="text-5xl font-bold">Login now!</h1>
-                        <p className="py-6">
-                            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                            quasi. In deleniti eaque aut repudiandae et a id nisi.
-                        </p>
+                        <Lottie animationData={loginAnimation}></Lottie>
                     </div>
                     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                         <div className="card-body">
@@ -23,7 +20,7 @@ const Login = () => {
                                 <div><a className="link link-hover">Forgot password?</a></div>
                                 <button className="btn btn-neutral mt-4">Login</button>
                             </form>
-                            <p>Don't have an account? <Link to={'/register'}>Register</Link> Now</p>
+                            <p>Don't have an account? <Link to={'/register'}><span className='font-bold underline'>Register</span></Link> Now</p>
                         </div>
                     </div>
                 </div>

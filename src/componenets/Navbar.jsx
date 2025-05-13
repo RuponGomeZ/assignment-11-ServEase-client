@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import AuthContext from '../Authontication/Authcontext';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Navbar = () => {
+
+    const { user, signOutUser } = useContext(AuthContext)
+
+    const handleSignOut = () => {
+        signOutUser()
+            .then(() => {
+                toast.error('logged out successfully')
+                // console.log('logged out successfully');
+            })
+    }
 
     const links = [
         <div className='flex gap-5 items-center'>
@@ -42,9 +54,12 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end gap-2">
-                <a className="">Name</a>
-                <Link to={'/login'}>Login</Link>
+                <a className="font-bold underline">{user?.displayName}</a>
+                {
+                    user ? <button onClick={handleSignOut}>Logout</button> : <Link to={'/login'}>Login</Link>
+                }
             </div>
+            <Toaster />
         </div>
     );
 };

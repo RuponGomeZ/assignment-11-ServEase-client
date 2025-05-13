@@ -4,10 +4,20 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
 
     const links = [
-        <div className='flex gap-5'>
-            <Link>Home</Link>
-            <Link>Services</Link>
-            <Link>Dashboard</Link>
+        <div className='flex gap-5 items-center'>
+            <Link to={'/'}>Home</Link>
+            <Link to={''}>Services</Link>
+            <details className="dropdown">
+                <summary className="btn btn-ghost">Dashboard</summary>
+                <ul className="menu w-40 items-center gap-2 bg-gray-800 dropdown-content  ">
+                    <Link to={''}>Add Service</Link>
+                    <Link to={''}>Manage Service
+                    </Link>
+                    <Link to={''}>Booked-Services
+                    </Link>
+                    <Link to={''}>Service-To-Do</Link>
+                </ul>
+            </details>
         </div>
     ]
 
@@ -33,7 +43,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-end gap-2">
                 <a className="">Name</a>
-                <a className="btn">Logout</a>
+                <Link to={'/login'}>Login</Link>
             </div>
         </div>
     );

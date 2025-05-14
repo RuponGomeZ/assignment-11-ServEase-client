@@ -1,14 +1,57 @@
-import React from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const AddService = () => {
+    const queryClient = useQueryClient()
 
+    const { mutateAsync } = useMutation({
+        mutationFn: async serviceData => {
+            await axios.post('http://localhost:5000/addService', serviceData)
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['services'] })
+        }
+    })
 
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const form = e.target
+        const img = form.imageUrl.value
+        const service = form.name.value
+        const price = form.price.value
+        const area = form.area.value
+        console.log(img, service, price, area);
+        const serviceData = { img, service, price, area };
+
+        // axios.post('http://localhost:5000/addService', serviceData)
+        //     .then(res => console.log(res))
+
+        try {
+            await mutateAsync(serviceData)
+            form.reset()
+            toast.success('Service Added successfully!')
+        }
+        catch (err) {
+            toast.err(err.message)
+        }
+
+        // fetch('http://localhost:5000/addService', {
+        //     method: 'POST',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(serviceData)
+        // })
+        //     .then(res => res.json())
+        //     .then(data => console.log(data))
+    }
 
     return (
         <div>
             <div className="card bg-base-100 mx-auto mt-14 w-full max-w-sm shrink-0 shadow-2xl">
                 <div className="card-body"></div>
-                <form className="fieldset">
+                <form onSubmit={handleSubmit} className="fieldset">
 
                     {/* Image Url */}
                     <label className="label">Image Url</label>

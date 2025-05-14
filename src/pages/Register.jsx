@@ -7,8 +7,10 @@ import toast from 'react-hot-toast';
 
 const Register = () => {
 
-    const { signupWithEmailAndPassword, signOutUser, updateUserProfile, setUser } = useContext(AuthContext);
+    const { signupWithEmailAndPassword, signOutUser, updateUserProfile, setUser, user } = useContext(AuthContext);
+
     const navigate = useNavigate()
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -19,10 +21,12 @@ const Register = () => {
         const password = form.password.value
 
         // console.log(name, email, photoURL, password);
+        if (!name) return toast.error('Please enter your Name')
+        if (!photo) return toast.error('Please enter your PhotoURL')
         try {
             const result = await signupWithEmailAndPassword(email, password)
             console.log(result.user);
-            // signOutUser()
+            signOutUser()
             await updateUserProfile(name, photo)
             setUser({ ...result.user, photoURL: photo, displayName: name })
             toast.success("signup Successful! now login to your account")
@@ -32,6 +36,10 @@ const Register = () => {
             toast.error(error?.message)
             console.log(error?.message);
         }
+    }
+
+    if (user) {
+        navigate('/')
     }
 
     return (

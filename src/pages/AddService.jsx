@@ -1,8 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
+import { useContext } from 'react';
 import toast from 'react-hot-toast';
+import AuthContext from '../Authontication/Authcontext';
 
 const AddService = () => {
+
+    const { user } = useContext(AuthContext)
+
     const queryClient = useQueryClient()
 
     const { mutateAsync } = useMutation({
@@ -16,13 +21,18 @@ const AddService = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        const serviceProviderEmail = user.email
+        const serviceProviderImg = user.photoURL
+        const serviceProviderName = user.displayName
+
         const form = e.target
         const img = form.imageUrl.value
         const service = form.name.value
         const price = form.price.value
         const area = form.area.value
+        const description = form.description.value
         console.log(img, service, price, area);
-        const serviceData = { img, service, price, area };
+        const serviceData = { img, service, price, area, description, serviceProviderEmail, serviceProviderImg, serviceProviderName };
 
         // axios.post('http://localhost:5000/addService', serviceData)
         //     .then(res => console.log(res))
@@ -70,6 +80,10 @@ const AddService = () => {
                     <input name='area' type="text" className="input" placeholder="Service Area" />
 
                     {/* Description */}
+                    <label className="label">Description</label>
+                    <input name='description' type="text" className="input" placeholder="Service Area" />
+
+
                     <div><a className="link link-hover">Forgot password?</a></div>
                     <button className="btn btn-neutral mt-4">Add your service</button>
                 </form>

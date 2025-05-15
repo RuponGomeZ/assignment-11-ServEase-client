@@ -1,5 +1,6 @@
 import React from 'react';
 import Banner from './Banner';
+import PopularServices from '../componenets/PopularServices';
 
 const Home = () => {
     return (
@@ -8,6 +9,7 @@ const Home = () => {
             <div className=' mx-auto flex items-center justify-center'>
                 <Banner></Banner>
             </div>
+            <PopularServices></PopularServices>
         </div>
     );
 };

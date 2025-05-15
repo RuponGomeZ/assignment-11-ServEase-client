@@ -4,6 +4,10 @@ import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import AddService from '../pages/AddService';
+import PrivateRoute from './PrivateRoute';
+import AllServices from '../componenets/AllServices';
+import PopularServices from '../componenets/PopularServices';
+import ServiceDetails from './ServiceDetails';
 
 
 const router = createBrowserRouter([
@@ -26,7 +30,20 @@ const router = createBrowserRouter([
             },
             {
                 path: '/addService',
-                element: <AddService></AddService>
+                element: <PrivateRoute><AddService></AddService></PrivateRoute>
+            },
+            {
+                path: '/allService',
+                element: <AllServices></AllServices>
+            },
+            {
+                path: '/popularServices',
+                element: <PopularServices></PopularServices>
+            },
+            {
+                path: '/serviceDetails/:id',
+                element: <ServiceDetails></ServiceDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/serviceDetails/${params.id}`)
             }
         ]
     },

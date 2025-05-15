@@ -17,20 +17,21 @@ const Navbar = () => {
 
     const links = [
         <div className='flex gap-5 items-center'>
-            <Link to={'/'}>Home</Link>
-            <Link to={''}>Services</Link>
-            <details className="dropdown">
-                <summary className="btn btn-ghost">Dashboard</summary>
-                <div className="menu w-40 items-center gap-2 bg-gray-800 dropdown-content  ">
-                    <Link to={'/addService'}>Add Service</Link>
-                    <Link to={''}>Manage Service
-                    </Link>
-                    <Link to={''}>Booked-Services
-                    </Link>
-                    <Link to={''}>Service-To-Do</Link>
-                </div>
-            </details>
-        </div>
+            <Link to={'/'} key={"home"}>Home</Link>
+            <Link to={'/allService'} key={"services"}>Services</Link>
+            {user?.email && (
+                < div key={'dashboard'}>
+                    <details className="dropdown">
+                        <summary className="btn btn-ghost">Dashboard</summary>
+                        <div className="menu w-40 items-center gap-2 bg-gray-800 dropdown-content  ">
+                            <Link to={'/addService'} key={"addServices"}>Add Service</Link>
+                            <Link to='' key="manageService">Manage Service</Link>
+                            <Link to='' key="bookedServices">Booked-Services</Link>
+                            <Link to='' key="serviceToDo">Service-To-Do</Link>
+                        </div>
+                    </details>
+                </div>)}
+        </div >
     ]
 
     return (

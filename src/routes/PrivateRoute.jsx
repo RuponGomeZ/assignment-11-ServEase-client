@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import AuthContext from '../Authontication/Authcontext';
 import { Navigate, useLocation } from 'react-router-dom';
 import LoadinSpinner from '../componenets/LoadinSpinner';
+import { toast } from 'react-hot-toast';
 
 const PrivateRoute = ({ children }) => {
     const { user, loading } = useContext(AuthContext)

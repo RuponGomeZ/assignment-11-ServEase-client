@@ -1,10 +1,12 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
-import { useContext } from 'react';
-import toast from 'react-hot-toast';
-import AuthContext from '../Authontication/Authcontext';
 
-const AddService = () => {
+import { useContext } from 'react';
+import { useLoaderData } from 'react-router-dom';
+import AuthContext from '../Authontication/Authcontext';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
+
+const BookService = () => {
+    const { _id, area, description, img, price, service, serviceProviderEmail, serviceProviderImg, serviceProviderName } = useLoaderData()
 
     const { user } = useContext(AuthContext)
 
@@ -48,39 +50,59 @@ const AddService = () => {
 
     }
 
+
+
     return (
         <div>
             <div className="card bg-base-100 mx-auto mt-14 w-full max-w-sm shrink-0 shadow-2xl">
                 <div className="card-body"></div>
                 <form onSubmit={handleSubmit} className="fieldset">
-
-                    {/* Image Url */}
-                    <label className="label">Image Url</label>
-                    <input name='imageUrl' type="url" className="input" placeholder="Image url here" />
+                    {/* Service Id*/}
+                    <label className="label">Service ID</label>
+                    <input value={_id} name='serviceId' type="text" className="input" />
 
                     {/* Service Name */}
                     <label className="label">Service Name</label>
-                    <input name='name' type="text" className="input" placeholder="Service Name" />
+                    <input value={service} name='name' type="text" className="input" placeholder="Service Name" />
+
+
+                    {/* Image Url */}
+                    <label className="label">Image Url</label>
+                    <input value={img} name='imageUrl' type="url" className="input" placeholder="Image url here" />
+
+                    {/* Service Provider Email */}
+                    <label className="label">Service Provider Email</label>
+                    <input value={serviceProviderEmail} name='providerEmail' type="text" className="input" placeholder="providerName" />
+
+
+                    {/* Service Provider Name */}
+                    <label className="label">Service Provider Name</label>
+                    <input value={serviceProviderName} name='providerName' type="text" className="input" placeholder="providerName" />
+
+
+                    {/* Current User Email */}
+                    <label className="label">Your Email</label>
+                    <input value={user?.email} name='providerEmail' type="text" className="input" placeholder="providerName" />
 
                     {/* Price */}
                     <label className="label">Price</label>
-                    <input name='price' type="number" className="input" placeholder="Enter Your desired price" />
+                    <input value={price} name='price' type="number" className="input" placeholder="Enter Your desired price" />
 
                     {/* Service Area */}
                     <label className="label">Service Area</label>
-                    <input name='area' type="text" className="input" placeholder="Service Area" />
+                    <input value={area} name='area' type="text" className="input" placeholder="Service Area" />
 
                     {/* Description */}
                     <label className="label">Description</label>
-                    <input name='description' type="text" className="input" placeholder="Service Area" />
+                    <input value={description} name='description' type="text" className="input" placeholder="Service Area" />
 
 
                     <div><a className="link link-hover">Forgot password?</a></div>
-                    <button className="btn btn-neutral mt-4">Add your service</button>
+                    <button className="btn btn-neutral mt-4">Book service</button>
                 </form>
             </div>
         </div>
     );
 };
 
-export default AddService;
+export default BookService;

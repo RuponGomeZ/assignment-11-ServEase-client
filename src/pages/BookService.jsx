@@ -1,12 +1,19 @@
-
-import { useContext } from 'react';
+import 'react-datepicker/dist/react-datepicker.css';
+import { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import AuthContext from '../Authontication/Authcontext';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+import DatePicker from 'react-datepicker';
+import axios from 'axios';
+
 
 const BookService = () => {
-    const { _id, area, description, img, price, service, serviceProviderEmail, serviceProviderImg, serviceProviderName } = useLoaderData()
+
+    const [startDate, setStartDate] = useState(new Date());
+
+
+    const { _id, img, price, service, serviceProviderEmail, serviceProviderImg, serviceProviderName } = useLoaderData()
 
     const { user } = useContext(AuthContext)
 
@@ -14,7 +21,7 @@ const BookService = () => {
 
     const { mutateAsync } = useMutation({
         mutationFn: async serviceData => {
-            await axios.post('http://localhost:5000/addService', serviceData)
+            await axios.post('http://localhost:5000/bookService', serviceData)
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['services'] })
@@ -27,14 +34,15 @@ const BookService = () => {
         const serviceProviderImg = user.photoURL
         const serviceProviderName = user.displayName
 
+        const serviceId = _id
         const form = e.target
         const img = form.imageUrl.value
         const service = form.name.value
         const price = form.price.value
-        const area = form.area.value
-        const description = form.description.value
-        console.log(img, service, price, area);
-        const serviceData = { img, service, price, area, description, serviceProviderEmail, serviceProviderImg, serviceProviderName };
+        const serviceStatus = "Pending"
+
+        // console.log(img, service, price, area);
+        const serviceData = { img, service, price, serviceProviderEmail, serviceProviderImg, serviceProviderName, serviceStatus, serviceId };
 
         // axios.post('http://localhost:5000/addService', serviceData)
         //     .then(res => console.log(res))
@@ -42,10 +50,10 @@ const BookService = () => {
         try {
             await mutateAsync(serviceData)
             form.reset()
-            toast.success('Service Added successfully!')
+            toast.success('You have booked this service!')
         }
         catch (err) {
-            toast.err(err.message)
+            toast.error(err.message)
         }
 
     }
@@ -84,20 +92,32 @@ const BookService = () => {
                     <label className="label">Your Email</label>
                     <input value={user?.email} name='providerEmail' type="text" className="input" placeholder="providerName" />
 
+                    {/* Current User Name */}
+                    <label className="label">Your Name</label>
+                    <input value={user?.displayName} name='providerEmail' type="text" className="input" placeholder="providerName" />
+
+
+                    {/* Service taking date */}
+                    <div className='flex flex-col gap-2 '>
+                        <label className='label'>Choose Your Preferred Starting Date</label>
+
+                        {/* Date Picker Input Field */}
+                        <DatePicker
+                            className='border p-2 rounded-md'
+                            selected={startDate}
+                            onChange={date => setStartDate(date)}
+                        />
+                    </div>
+
+                    {/* Special Instruction */}
+                    <label className="label">Special Instruction  </label>
+                    <input name='description' type="text" className="input" placeholder="Special Instruction ( address , area, customized service plan )" />
+
+
                     {/* Price */}
                     <label className="label">Price</label>
-                    <input value={price} name='price' type="number" className="input" placeholder="Enter Your desired price" />
+                    <input value={price} name='price' type="number" className="input" />
 
-                    {/* Service Area */}
-                    <label className="label">Service Area</label>
-                    <input value={area} name='area' type="text" className="input" placeholder="Service Area" />
-
-                    {/* Description */}
-                    <label className="label">Description</label>
-                    <input value={description} name='description' type="text" className="input" placeholder="Service Area" />
-
-
-                    <div><a className="link link-hover">Forgot password?</a></div>
                     <button className="btn btn-neutral mt-4">Book service</button>
                 </form>
             </div>

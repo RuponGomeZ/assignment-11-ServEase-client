@@ -25,7 +25,7 @@ const Navbar = () => {
                         <summary className="btn btn-ghost">Dashboard</summary>
                         <div className="menu w-40 items-center gap-2 bg-gray-800 dropdown-content  ">
                             <Link to={'/addService'} key={"addServices"}>Add Service</Link>
-                            <Link to='' key="manageService">Manage Service</Link>
+                            <Link to={'/manageService'} key="manageService">Manage Service</Link>
                             <Link to='' key="bookedServices">Booked-Services</Link>
                             <Link to='' key="serviceToDo">Service-To-Do</Link>
                         </div>

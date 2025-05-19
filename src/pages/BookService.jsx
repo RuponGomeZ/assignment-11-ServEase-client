@@ -39,10 +39,12 @@ const BookService = () => {
         const img = form.imageUrl.value
         const service = form.name.value
         const price = form.price.value
+        const userEmail = user.email;
+        const startingDate = startDate
         const serviceStatus = "Pending"
 
         // console.log(img, service, price, area);
-        const serviceData = { img, service, price, serviceProviderEmail, serviceProviderImg, serviceProviderName, serviceStatus, serviceId };
+        const serviceData = { img, service, price, serviceProviderEmail, serviceProviderImg, serviceProviderName, serviceStatus, serviceId, userEmail, startingDate };
 
         // axios.post('http://localhost:5000/addService', serviceData)
         //     .then(res => console.log(res))

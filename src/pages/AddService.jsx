@@ -75,7 +75,6 @@ const AddService = () => {
                     <input name='description' type="text" className="input" placeholder="Service Area" />
 
 
-                    <div><a className="link link-hover">Forgot password?</a></div>
                     <button className="btn btn-neutral mt-4">Add your service</button>
                 </form>
             </div>

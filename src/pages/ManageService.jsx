@@ -43,6 +43,7 @@ const ManageService = () => {
                             <h2 className="card-title justify-center">{service?.service}</h2>
                             <img className='w-40 mx-auto' src={service?.img} alt="" />
                             <p>{(service.description).slice(0, 100)}......</p>
+                            <p><span className='font-bold'>Price:</span> {service.price}</p>
                             <div className="justify-center gap-10 card-actions">
                                 <Link to={`/editService/${service._id}`} className="btn btn-primary">Edit</Link>
                                 <button onClick={() => handleDelete(service._id, service.service)} className="btn btn-primary">Delete</button>

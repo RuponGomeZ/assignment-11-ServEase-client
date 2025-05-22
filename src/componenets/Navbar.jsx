@@ -18,7 +18,7 @@ const Navbar = () => {
     const links = (
         <>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/allService">Services</Link></li>
+            <li><Link to="/allServices">Services</Link></li>
             {user?.email && (
                 <li>
                     <details className="dropdown">

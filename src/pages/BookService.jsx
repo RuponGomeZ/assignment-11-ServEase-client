@@ -30,9 +30,9 @@ const BookService = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const serviceProviderEmail = user.email
         const serviceProviderImg = user.photoURL
         const serviceProviderName = user.displayName
+
 
         const serviceId = _id
         const form = e.target
@@ -42,6 +42,9 @@ const BookService = () => {
         const userEmail = user.email;
         const startingDate = startDate
         const serviceStatus = "Pending"
+
+        if (serviceProviderEmail === userEmail) return toast.error("You can't book your own service")
+
 
         // console.log(img, service, price, area);
         const serviceData = { img, service, price, serviceProviderEmail, serviceProviderImg, serviceProviderName, serviceStatus, serviceId, userEmail, startingDate };

@@ -28,10 +28,9 @@ const BookedServices = () => {
                             <th>SL</th>
                             <th>Service Name</th>
                             <th>Price</th>
-                            <th> Email</th>
+                            <th>Service Provider Email</th>
                             <th>Status</th>
                             <th>Starting Date</th>
-
                         </tr>
                     </thead>
                     <tbody>

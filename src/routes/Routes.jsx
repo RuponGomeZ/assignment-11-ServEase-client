@@ -5,7 +5,7 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import AddService from '../pages/AddService';
 import PrivateRoute from './PrivateRoute';
-import AllServices from '../componenets/AllServices';
+import AllServices from '../pages/AllServices';
 import PopularServices from '../componenets/PopularServices';
 import ServiceDetails from './ServiceDetails';
 import BookService from '../pages/BookService';
@@ -13,6 +13,7 @@ import ManageService from '../pages/ManageService';
 import EditService from '../pages/EditService';
 import BookedServices from '../pages/BookedServices';
 import ServicesToDo from '../pages/ServicesToDo';
+import ServiceCard from '../componenets/ServiceCard';
 
 
 const router = createBrowserRouter([
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
                 element: <PrivateRoute><AddService></AddService></PrivateRoute>
             },
             {
-                path: '/allService',
+                path: '/allServices',
                 element: <AllServices></AllServices>
             },
             {

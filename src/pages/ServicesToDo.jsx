@@ -2,11 +2,26 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { format } from "date-fns";
 import AuthContext from '../Authontication/Authcontext';
+import toast from 'react-hot-toast';
 
 const ServicesToDo = () => {
 
     const [bookServices, setBookServices] = useState([])
     const { user } = useContext(AuthContext)
+
+
+    const handleStatus = (id, status) => {
+        axios.patch(`http://localhost:5000/serviceToDo/changeStatus/${id}`, { serviceStatus: status })
+            .then(res => {
+                toast.success('Status Changed')
+                axios.get(`http://localhost:5000/servicesToDo/${user.email}`)
+                    .then(res => setBookServices(res.data));
+            })
+            .catch(error => {
+                toast.error(error)
+            })
+
+    }
 
     useEffect(() => {
         axios.get(`http://localhost:5000/servicesToDo/${user.email}`)
@@ -19,6 +34,14 @@ const ServicesToDo = () => {
     }, [user?.email]);
 
 
+    const getStatusClass = (status) => {
+        if (status === "Pending") return "text-yellow-500 font-bold";
+        if (status === "working") return "text-blue-500 font-bold";
+        if (status === "completed") return "text-green-600 font-bold";
+        return "";
+    };
+
+
     return (
         <div className='mt-14'>
             {bookServices.length === 0 ? <p>No Order Yet</p> : <div className="overflow-visible">
@@ -29,9 +52,9 @@ const ServicesToDo = () => {
                             <th>Service Name</th>
                             <th>Price</th>
                             <th> Email</th>
-                            <th>Status</th>
+                            <th>Current Status</th>
                             <th>Starting Date</th>
-                            <th>Status</th>
+                            <th>Change Status</th>
 
                         </tr>
                     </thead>
@@ -41,15 +64,16 @@ const ServicesToDo = () => {
                                 <th>{idx + 1}</th>
                                 <td>{bookService.service}</td>
                                 <td>{bookService.price}</td>
-                                <td>{bookService.serviceProviderEmail}</td>
-                                <td>{bookService.serviceStatus}</td>
+                                <td>{bookService.userEmail}</td>
+                                <td> <span className={getStatusClass(bookService.serviceStatus)}>
+                                    {bookService.serviceStatus}
+                                </span></td>
                                 <td>{format(new Date(bookService.startingDate), "dd/MM/yyyy")}</td>
                                 <td>
-                                    <select defaultValue="Pick a color" className="select">
-                                        <option disabled={true}>Pick a color</option>
-                                        <option>Crimson</option>
-                                        <option>Amber</option>
-                                        <option>Velvet</option>
+                                    <select onChange={e => handleStatus(bookService._id, e.target.value)} className="select">
+                                        <option value="Pending">pending</option>
+                                        <option value="working">working</option>
+                                        <option value="completed">completed</option>
                                     </select>
                                 </td>
                             </tr>

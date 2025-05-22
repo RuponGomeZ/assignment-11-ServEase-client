@@ -1,15 +1,15 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import { format, compareAsc } from "date-fns";
+import { format } from "date-fns";
 import AuthContext from '../Authontication/Authcontext';
 
+const ServicesToDo = () => {
 
-const BookedServices = () => {
     const [bookServices, setBookServices] = useState([])
     const { user } = useContext(AuthContext)
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/bookService/${user.email}`)
+        axios.get(`http://localhost:5000/servicesToDo/${user.email}`)
             .then(res => {
                 setBookServices(res.data)
             })
@@ -21,7 +21,7 @@ const BookedServices = () => {
 
     return (
         <div className='mt-14'>
-            {bookServices.length === 0 ? <p>You Haven't Book Any Order Yet</p> : <div className="overflow-x-auto">
+            {bookServices.length === 0 ? <p>No Order Yet</p> : <div className="overflow-visible">
                 <table className="table table-zebra">
                     <thead>
                         <tr>
@@ -31,6 +31,7 @@ const BookedServices = () => {
                             <th> Email</th>
                             <th>Status</th>
                             <th>Starting Date</th>
+                            <th>Status</th>
 
                         </tr>
                     </thead>
@@ -43,6 +44,14 @@ const BookedServices = () => {
                                 <td>{bookService.serviceProviderEmail}</td>
                                 <td>{bookService.serviceStatus}</td>
                                 <td>{format(new Date(bookService.startingDate), "dd/MM/yyyy")}</td>
+                                <td>
+                                    <select defaultValue="Pick a color" className="select">
+                                        <option disabled={true}>Pick a color</option>
+                                        <option>Crimson</option>
+                                        <option>Amber</option>
+                                        <option>Velvet</option>
+                                    </select>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
@@ -52,4 +61,4 @@ const BookedServices = () => {
     );
 };
 
-export default BookedServices;
+export default ServicesToDo;

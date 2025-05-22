@@ -15,24 +15,26 @@ const Navbar = () => {
             })
     }
 
-    const links = [
-        <div className='flex gap-5 items-center'>
-            <Link to={'/'} key={"home"}>Home</Link>
-            <Link to={'/allService'} key={"services"}>Services</Link>
+    const links = (
+        <>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/allService">Services</Link></li>
             {user?.email && (
-                < div key={'dashboard'}>
+                <li>
                     <details className="dropdown">
                         <summary className="btn btn-ghost">Dashboard</summary>
-                        <div className="menu w-40 items-center gap-2 bg-gray-800 dropdown-content  ">
-                            <Link to={'/addService'} key={"addServices"}>Add Service</Link>
-                            <Link to={'/manageService'} key="manageService">Manage Service</Link>
-                            <Link to='' key="bookedServices">Booked-Services</Link>
-                            <Link to='' key="serviceToDo">Service-To-Do</Link>
-                        </div>
+                        <ul className="menu w-40 items-center gap-2 bg-gray-800 dropdown-content">
+                            <li><Link to="/addService">Add Service</Link></li>
+                            <li><Link to="/manageService">Manage Service</Link></li>
+                            <li><Link to="/bookedServices">Booked-Services</Link></li>
+                            <li><Link to="/servicesToDo">Service-To-Do</Link></li>
+                        </ul>
                     </details>
-                </div>)}
-        </div >
-    ]
+                </li>
+            )}
+        </>
+    );
+
 
     return (
         <div className="navbar bg-base-100 shadow-sm">

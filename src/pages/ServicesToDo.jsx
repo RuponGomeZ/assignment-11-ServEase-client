@@ -3,12 +3,15 @@ import React, { useContext, useEffect, useState } from 'react';
 import { format } from "date-fns";
 import AuthContext from '../Authontication/Authcontext';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import LoadinSpinner from '../componenets/LoadinSpinner';
 
 const ServicesToDo = () => {
 
     const [bookServices, setBookServices] = useState([])
-    const { user } = useContext(AuthContext)
+    const { user, signOutUser, setLoading, loading } = useContext(AuthContext)
 
+    const navigate = useNavigate()
 
     const handleStatus = (id, status) => {
         axios.patch(`http://localhost:5000/serviceToDo/changeStatus/${id}`, { serviceStatus: status })
@@ -19,12 +22,26 @@ const ServicesToDo = () => {
             })
             .catch(error => {
                 toast.error(error)
+
             })
 
     }
 
+
+    // useEffect(() => {
+    //     fetchAllServices()
+    // }, [user])
+
+    // const fetchAllServices = async () => {
+    //     const { data } = await axiosSecure.get(`http://localhost:5000/servicesToDo/namnai@gmail.com`)
+    //     setBookServices(data.data)
+    // }
+
+
+
     useEffect(() => {
-        axios.get(`http://localhost:5000/servicesToDo/${user.email}`)
+        if (!user || !user.email) return;
+        axios.get(`http://localhost:5000/servicesToDo/${user.email}`, { withCredentials: true })
             .then(res => {
                 setBookServices(res.data)
             })
@@ -32,6 +49,11 @@ const ServicesToDo = () => {
                 console.error(err);
             });
     }, [user?.email]);
+
+
+
+
+    // if (loading) return <LoadinSpinner></LoadinSpinner>
 
 
     const getStatusClass = (status) => {

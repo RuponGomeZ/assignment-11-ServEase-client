@@ -9,6 +9,7 @@ import { FaGoogle } from 'react-icons/fa';
 const Login = () => {
 
     const navigate = useNavigate()
+    const from = location?.state || '/'
 
     const { loginUser, googleLogin } = useContext(AuthContext)
 
@@ -21,7 +22,7 @@ const Login = () => {
         console.log(email, password);
         loginUser(email, password)
             .then(result => {
-                navigate('/')
+                navigate(from, { replace: true })
                 // console.log(result.user);
                 toast.success(`Logged in as ${result.user.displayName}`)
             })
@@ -33,7 +34,7 @@ const Login = () => {
     const handleGoogleLogin = () => {
         googleLogin()
             .then(result => {
-                navigate('/')
+                navigate(from, { replace: true })
                 toast.success(`Logged in as ${result.user.displayName}`)
             })
             .catch(error => {

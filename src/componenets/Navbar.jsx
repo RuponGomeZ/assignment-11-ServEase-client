@@ -20,16 +20,14 @@ const Navbar = () => {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/allServices">Services</Link></li>
             {user?.email && (
-                <li>
-                    <details className="dropdown">
-                        <summary className="btn btn-ghost">Dashboard</summary>
-                        <ul className="menu w-40 items-center gap-2 bg-gray-800 dropdown-content">
-                            <li><Link to="/addService">Add Service</Link></li>
-                            <li><Link to="/manageService">Manage Service</Link></li>
-                            <li><Link to="/bookedServices">Booked-Services</Link></li>
-                            <li><Link to="/servicesToDo">Service-To-Do</Link></li>
-                        </ul>
-                    </details>
+                <li className="dropdown">
+                    <label tabIndex={0} className="btn btn-ghost m-1">Dashboard</label>
+                    <ul tabIndex={0} className="menu w-40 items-center gap-2 bg-gray-800 dropdown-content">
+                        <li><Link to="/addService">Add Service</Link></li>
+                        <li><Link to="/manageService">Manage Service</Link></li>
+                        <li><Link to="/bookedServices">Booked-Services</Link></li>
+                        <li><Link to="/servicesToDo">Service-To-Do</Link></li>
+                    </ul>
                 </li>
             )}
         </>
@@ -52,7 +50,7 @@ const Navbar = () => {
                 <a className="btn btn-ghost text-xl">ServEase</a>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal px-1 items-center">
                     {links}
                 </ul>
             </div>

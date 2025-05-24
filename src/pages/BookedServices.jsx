@@ -2,18 +2,27 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { format, compareAsc } from "date-fns";
 import AuthContext from '../Authontication/Authcontext';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 
 const BookedServices = () => {
     const [bookServices, setBookServices] = useState([])
-    const { user } = useContext(AuthContext)
+    const { user, signOutUser } = useContext(AuthContext)
+    const navigate = useNavigate()
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/bookService/${user.email}`)
+        if (!user?.email) return
+        axios.get(`http://localhost:5000/bookService/${user.email}`, { withCredentials: true })
             .then(res => {
                 setBookServices(res.data)
             })
             .catch(err => {
+                if (err.status === 401) {
+                    signOutUser()
+                    navigate('/login')
+                    return toast.error(`${err.response.data.message}, Please Login`)
+                }
                 console.error(err);
             });
     }, [user?.email]);

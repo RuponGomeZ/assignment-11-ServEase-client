@@ -4,7 +4,6 @@ import { format } from "date-fns";
 import AuthContext from '../Authontication/Authcontext';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import LoadinSpinner from '../componenets/LoadinSpinner';
 
 const ServicesToDo = () => {
 
@@ -46,9 +45,13 @@ const ServicesToDo = () => {
                 setBookServices(res.data)
             })
             .catch(err => {
-                console.error(err);
+                if (err.status === 401) {
+                    signOutUser()
+                    navigate('/login')
+                    return toast.error(`${err.response.data.message}, Please Login`)
+                }
             });
-    }, [user?.email]);
+    }, [user?.email, bookServices]);
 
 
 

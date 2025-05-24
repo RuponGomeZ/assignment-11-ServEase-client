@@ -67,8 +67,8 @@ const AuthProvider = ({ children }) => {
                 setUser(currentUser)
                 const { data } = await axios.get('http://localhost:5000/logout', { withCredentials: true })
             }
+            setLoading(false)
         })
-        setLoading(false)
         return () => {
             unsubscribe()
         }

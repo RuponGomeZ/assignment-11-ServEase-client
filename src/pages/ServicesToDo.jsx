@@ -45,13 +45,15 @@ const ServicesToDo = () => {
                 setBookServices(res.data)
             })
             .catch(err => {
-                if (err.status === 401) {
-                    signOutUser()
-                    navigate('/login')
-                    return toast.error(`${err.response.data.message}, Please Login`)
+                if (err.response && err.response.status === 401) {
+                    signOutUser();
+                    navigate('/login');
+                    toast.error('Unauthorized access. Please login.');
+                } else {
+                    toast.error('Something went wrong.');
                 }
             });
-    }, [user?.email, bookServices]);
+    }, [user?.email]);
 
 
 

@@ -3,6 +3,7 @@ import AuthContext from '../Authontication/Authcontext';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const ManageService = () => {
 
@@ -20,18 +21,45 @@ const ManageService = () => {
             });
 
         console.log(data);
-    }, [user?.email]);
+    }, [user?.email, data]);
 
 
     const handleDelete = (id, service) => {
-        axios.delete(`http://localhost:5000/manageService/${id}`)
-            .then(res => {
-                toast.success(`${service} deleted successfully`)
-                console.log(res.data);
-            })
-            .catch(error => {
-                toast.error(error)
-            })
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:5000/manageService/${id}`)
+                    .then(res => {
+                        // toast.success(`${service} deleted successfully`)
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: `${service} deleted successfully`,
+                            icon: "success"
+                        });
+                        console.log(res.data);
+                    })
+                    .catch(error => {
+                        toast.error(error)
+                    })
+
+            }
+        });
+
+        // axios.delete(`http://localhost:5000/manageService/${id}`)
+        //     .then(res => {
+        //         toast.success(`${service} deleted successfully`)
+        //         console.log(res.data);
+        //     })
+        //     .catch(error => {
+        //         toast.error(error)
+        //     })
     }
 
     return (

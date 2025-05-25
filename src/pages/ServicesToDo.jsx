@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import AuthContext from '../Authontication/Authcontext';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const ServicesToDo = () => {
 
@@ -12,8 +13,30 @@ const ServicesToDo = () => {
 
     const navigate = useNavigate()
 
+    console.log(bookServices);
     const handleStatus = (id, status) => {
-        axios.patch(`http://localhost:5000/serviceToDo/changeStatus/${id}`, { serviceStatus: status })
+
+        const serviceToUpdate = bookServices.find(service => service._id === id);
+
+        if (!serviceToUpdate) {
+            return toast.error("Service not found");
+        }
+
+        console.log("Current status (from latest state):", serviceToUpdate.serviceStatus);
+        console.log("New status:", status);
+
+        if (serviceToUpdate.serviceStatus === status) {
+            return Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: `Status is already set to ${status}`,
+                footer: '<a href="#">Why do I have this issue?</a>'
+            });
+            // toast.error(`Status is already set to ${status}`);
+        }
+
+
+        axios.patch(`http://localhost:5000/serviceToDo/changeStatus/${id}`, { serviceStatus: status }, { withCredentials: true })
             .then(res => {
                 toast.success('Status Changed')
                 axios.get(`http://localhost:5000/servicesToDo/${user.email}`)
@@ -97,7 +120,7 @@ const ServicesToDo = () => {
                                 </span></td>
                                 <td>{format(new Date(bookService.startingDate), "dd/MM/yyyy")}</td>
                                 <td>
-                                    <select onChange={e => handleStatus(bookService._id, e.target.value)} className="select">
+                                    <select value={bookService.serviceStatus} onChange={e => handleStatus(bookService._id, e.target.value)} className="select">
                                         <option value="Pending">pending</option>
                                         <option value="working">working</option>
                                         <option value="completed">completed</option>

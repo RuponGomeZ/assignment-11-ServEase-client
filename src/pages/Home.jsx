@@ -2,20 +2,39 @@ import React from 'react';
 import Banner from './Banner';
 import PopularServices from '../componenets/PopularServices';
 import ClientReviews from '../componenets/ClientReviews';
-
+import { easeInOut, motion } from 'framer-motion';
 const Home = () => {
     return (
         <div className=' mt-32'>
-            <h2 className='text-center  font-bold text-4xl mb-7'>Few Services Done by our clients</h2>
+            <motion.h2
+                className='text-center font-bold text-4xl mb-7'
+                animate={{
+                    x: [0, -50, 50, 0],
+                }}
+                transition={{
+                    duration: 10,
+                    ease: 'easeInOut',
+                    repeat: Infinity,
+                    repeatType: 'loop',
+                }}
+            >
+                Few Services Done by our clients
+            </motion.h2>
             <div className=' mx-auto flex items-center justify-center'>
                 <Banner></Banner>
             </div>
             <PopularServices></PopularServices>
 
             <div>
-                <h2 className='text-center font-bold text-4xl my-10 mt-40'>In Our 5 Years Of Journey We Have </h2>
+                <h2 className='text-center font-bold text-4xl my-10 mt-40'><motion.span animate={{ x: [0, -50, 50, 0], }}
+                    transition={{ duration: 5, ease: 'easeInOut', repeat: Infinity, repeatType: 'loop' }}
+                >In Our 5 Years</motion.span>
+                    <motion.span animate={{ x: [0, -10, -10, 0], }}
+                        transition={{ duration: 10, ease: 'easeInOut', repeat: Infinity, repeatType: 'loop' }}
+                    >Of Journey We Have</motion.span>
+                </h2>
 
-                <div className='flex gap-10 justify-center'>
+                <div className='flex flex-col lg:flex-row gap-10 justify-center  items-center text-white'>
                     <div className="card w-72 bg-base-100 card-md shadow-sm">
                         <div className="card-body items-center bg-gray-700 rounded-lg">
                             <p className='text-sm font-thin '>COMPLETED OVER </p>

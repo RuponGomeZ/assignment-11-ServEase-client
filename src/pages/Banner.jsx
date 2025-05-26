@@ -7,39 +7,24 @@ import cleaner5 from '../assets/cleaning (5).jpg'
 
 const Banner = () => {
     return (
-
-        <div className="carousel rounded-box w-2/4 ">
-            <div className="carousel-item">
-                <img
-                    className='h-[400px] bg-white p-1 '
-                    src={cleaner}
-                    alt="cleaner" />
+        <div className="flex justify-center items-center w-full">
+            <div className="carousel rounded-box w-full sm:w-3/4 lg:w-2/4 mx-auto container">
+                <div className="carousel-item">
+                    <img className='h-[400px] bg-gray-300 p-1' src={cleaner} alt="cleaner" />
+                </div>
+                <div className="carousel-item">
+                    <img className='h-[400px] bg-gray-300 p-1' src={cleaner2} alt="cleaner" />
+                </div>
+                <div className="carousel-item">
+                    <img className='h-[400px] bg-gray-300 p-1' src={cleaner3} alt="cleaner" />
+                </div>
+                <div className="carousel-item">
+                    <img className='h-[400px] bg-gray-300 p-1' src={cleaner4} alt="cleaner" />
+                </div>
+                <div className="carousel-item">
+                    <img className='h-[400px] bg-gray-300 p-1' src={cleaner5} alt="cleaner" />
+                </div>
             </div>
-            <div className="carousel-item">
-                <img
-                    className='h-[400px] bg-white p-1'
-                    src={cleaner2}
-                    alt="cleaner" />
-            </div>
-            <div className="carousel-item">
-                <img
-                    className='h-[400px] bg-white p-1'
-                    src={cleaner3}
-                    alt="cleaner" />
-            </div>
-            <div className="carousel-item">
-                <img
-                    className='h-[400px] bg-white p-1'
-                    src={cleaner4}
-                    alt="cleaner" />
-            </div>
-            <div className="carousel-item">
-                <img
-                    className='h-[400px] bg-white p-1'
-                    src={cleaner5}
-                    alt="cleaner" />
-            </div>
-
         </div>
     );
 };

@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import AuthContext from '../Authontication/Authcontext';
 import toast, { Toaster } from 'react-hot-toast';
+import ToggleTheme from './ToggleTheme';
 
 const Navbar = () => {
 
@@ -17,25 +18,28 @@ const Navbar = () => {
 
     const links = (
         <>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/allServices">Services</Link></li>
-            {user?.email && (
+            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/allServices">Services</NavLink></li>
+            <li>  {user?.email && (
                 <li className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost m-1">Dashboard</label>
-                    <ul tabIndex={0} className="menu w-40 items-center gap-2 bg-gray-800 dropdown-content">
-                        <li><Link to="/addService">Add Service</Link></li>
-                        <li><Link to="/manageService">Manage Service</Link></li>
-                        <li><Link to="/bookedServices">Booked-Services</Link></li>
-                        <li><Link to="/servicesToDo">Service-To-Do</Link></li>
+                    <ul tabIndex={0} className="menu w-40 items-center gap-2 bg-gray-400 dropdown-content">
+                        <li><NavLink to="/addService">Add Service</NavLink></li>
+                        <li><NavLink to="/manageService">Manage Service</NavLink></li>
+                        <li><NavLink to="/bookedServices">Booked-Services</NavLink></li>
+                        <li><NavLink to="/servicesToDo">Service-To-Do</NavLink></li>
                     </ul>
                 </li>
-            )}
+            )}</li>
+            <li className='block lg:hidden'>{
+                user ? <button onClick={handleSignOut}>Logout</button> : <Link to={'/login'}>Login</Link>
+            }</li>
         </>
     );
 
 
     return (
-        <div className="navbar bg-base-100 shadow-sm">
+        <div className="navbar bg-base-100 shadow-sm sticky top-0 z-50">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -54,10 +58,11 @@ const Navbar = () => {
                     {links}
                 </ul>
             </div>
-            <div className="navbar-end gap-2">
+            <div className="navbar-end gap-3">
+                <ToggleTheme></ToggleTheme>
                 <a className="font-bold underline">{user?.displayName}</a>
                 {
-                    user ? <button onClick={handleSignOut}>Logout</button> : <Link to={'/login'}>Login</Link>
+                    user ? <button className='hidden lg:block' onClick={handleSignOut}>Logout</button> : <Link to={'/login'}>Login</Link>
                 }
             </div>
             <Toaster />

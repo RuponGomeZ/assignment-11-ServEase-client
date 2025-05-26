@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const ServiceCard = ({ service }) => {
     return (
         <div>
-            <div className="card bg-base-200 w-80 shadow-sm  mx-auto container">
+            <div className="card h-[500px] bg-base-200 w-80 shadow-sm  mx-auto container">
                 <figure>
                     <img
                         className='w-60'

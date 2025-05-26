@@ -5,7 +5,9 @@ import AuthContext from '../Authontication/Authcontext';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-
+import { div } from 'motion/react-client';
+import Lottie from 'lottie-react';
+import empty from '../assets/empty.json'
 const ServicesToDo = () => {
 
     const [bookServices, setBookServices] = useState([])
@@ -94,43 +96,48 @@ const ServicesToDo = () => {
 
     return (
         <div className='mt-14'>
-            {bookServices.length === 0 ? <p>No Order Yet</p> : <div className="overflow-visible">
-                <table className="table table-zebra">
-                    <thead>
-                        <tr>
-                            <th>SL</th>
-                            <th>Service Name</th>
-                            <th>Price</th>
-                            <th> Email</th>
-                            <th>Current Status</th>
-                            <th>Starting Date</th>
-                            <th>Change Status</th>
+            {bookServices.length === 0 ?
+                <div>
+                    <p className='font-bold text-3xl text-center'>No Order Yet</p>
+                    <Lottie className='w-96 mt-16 mx-auto bg-gray-300 rounded-full' animationData={empty}></Lottie>
+                </div>
+                : <div className="overflow-visible">
+                    <table className="table table-zebra">
+                        <thead>
+                            <tr>
+                                <th>SL</th>
+                                <th>Service Name</th>
+                                <th>Price</th>
+                                <th> Email</th>
+                                <th>Current Status</th>
+                                <th>Starting Date</th>
+                                <th>Change Status</th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {bookServices.map((bookService, idx) => (
-                            <tr key={bookService._id}>
-                                <th>{idx + 1}</th>
-                                <td>{bookService.service}</td>
-                                <td>{bookService.price}</td>
-                                <td>{bookService.userEmail}</td>
-                                <td> <span className={getStatusClass(bookService.serviceStatus)}>
-                                    {bookService.serviceStatus}
-                                </span></td>
-                                <td>{format(new Date(bookService.startingDate), "dd/MM/yyyy")}</td>
-                                <td>
-                                    <select value={bookService.serviceStatus} onChange={e => handleStatus(bookService._id, e.target.value)} className="select">
-                                        <option value="Pending">pending</option>
-                                        <option value="working">working</option>
-                                        <option value="completed">completed</option>
-                                    </select>
-                                </td>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>}
+                        </thead>
+                        <tbody>
+                            {bookServices.map((bookService, idx) => (
+                                <tr key={bookService._id}>
+                                    <th>{idx + 1}</th>
+                                    <td>{bookService.service}</td>
+                                    <td>{bookService.price}</td>
+                                    <td>{bookService.userEmail}</td>
+                                    <td> <span className={getStatusClass(bookService.serviceStatus)}>
+                                        {bookService.serviceStatus}
+                                    </span></td>
+                                    <td>{format(new Date(bookService.startingDate), "dd/MM/yyyy")}</td>
+                                    <td>
+                                        <select value={bookService.serviceStatus} onChange={e => handleStatus(bookService._id, e.target.value)} className="select">
+                                            <option value="Pending">pending</option>
+                                            <option value="working">working</option>
+                                            <option value="completed">completed</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>}
         </div>
     );
 };

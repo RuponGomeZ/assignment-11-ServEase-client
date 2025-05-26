@@ -21,7 +21,7 @@ const PopularServices = () => {
             <div key={services._id} className='grid grid-cols-1 lg:grid-cols-3 gap-10 my-10 w-10/12 mx-auto '>
                 {
                     services.slice(0, 6).map(service =>
-                        <ServiceCard service={service}></ServiceCard>
+                        <ServiceCard service={service} key={service._id}></ServiceCard>
                     )
                 }
             </div>

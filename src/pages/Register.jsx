@@ -16,7 +16,6 @@ const Register = () => {
     const navigate = useNavigate()
     const from = location?.state || '/'
 
-    if (user?.email) return navigate('/')
 
     const handleGoogleLogin = () => {
         googleLogin()

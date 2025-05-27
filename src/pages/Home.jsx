@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Banner from './Banner';
 import PopularServices from '../componenets/PopularServices';
 import ClientReviews from '../componenets/ClientReviews';
 import { easeInOut, motion } from 'framer-motion';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 const Home = () => {
+
+    useEffect(() => {
+        Aos.init({ duration: 2000 });
+    }, [])
+
     return (
-        <div className=' mt-32'>
+        <div className=' mt-32' data-aos="fade-left">
             <motion.h2
                 className='text-center font-bold text-4xl mb-7'
                 animate={{
@@ -23,10 +30,12 @@ const Home = () => {
             <div className=' mx-auto flex items-center justify-center'>
                 <Banner></Banner>
             </div>
-            <PopularServices></PopularServices>
+            <div >
+                <PopularServices></PopularServices>
+            </div>
 
             <div>
-                <h2 className='text-center font-bold text-4xl my-10 mt-40'><motion.span animate={{ x: [0, -50, 50, 0], }}
+                <h2 className='text-center font-bold text-4xl my-10 mt-40' data-aos="fade-right"><motion.span animate={{ x: [0, -50, 50, 0], }}
                     transition={{ duration: 5, ease: 'easeInOut', repeat: Infinity, repeatType: 'loop' }}
                 >In Our 5 Years</motion.span>
                     <motion.span animate={{ x: [0, -10, -10, 0], }}

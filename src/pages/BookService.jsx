@@ -43,7 +43,7 @@ const BookService = () => {
         const startingDate = startDate
         const serviceStatus = "Pending"
 
-        if (serviceProviderEmail === userEmail) return toast.error("You can't book your own service")
+        // if (serviceProviderEmail === userEmail) return toast.error("You can't book your own service")
 
 
         // console.log(img, service, price, area);
@@ -67,9 +67,10 @@ const BookService = () => {
 
     return (
         <div>
-            <div className="card bg-base-100 mx-auto mt-14 w-full max-w-sm shrink-0 shadow-2xl">
+            <div className="card bg-base-100 mx-auto mt-14 w-full max-w-sm shrink-0 shadow-2xl ">
                 <div className="card-body"></div>
-                <form onSubmit={handleSubmit} className="fieldset">
+                <h2 className='text-center font-bold text-2xl'>Book {service}</h2>
+                <form onSubmit={handleSubmit} className="fieldset mx-auto w-9/12 p-6 ">
                     {/* Service Id*/}
                     <label className="label">Service ID</label>
                     <input value={_id} name='serviceId' type="text" className="input" />

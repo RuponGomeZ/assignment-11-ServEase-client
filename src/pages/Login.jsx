@@ -14,7 +14,7 @@ const Login = () => {
 
     const { loginUser, googleLogin, user } = useContext(AuthContext)
 
-    if (user?.email) return navigate('/')
+
     const handleSubmit = (e) => {
         e.preventDefault()
         const form = e.target;

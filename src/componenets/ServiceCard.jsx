@@ -10,11 +10,11 @@ const ServiceCard = ({ service }) => {
                         className='w-60'
                         src={service.img} />
                 </figure>
-                <div className="card-body">
+                <div className="card-body sm:w-40 lg:w-full">
                     <h2 className="card-title">{service.service}</h2>
                     <p>{(service.description).slice(0, 100)}......</p>
                     <div className="card-actions justify-end">
-                        <Link to={`/serviceDetails/${service._id}`} className="btn btn-primary">See Details</Link>
+                        <Link to={`/serviceDetails/${service._id}`} className="btn btn-primary">View Details</Link>
                     </div>
                     <div className='flex items-center gap-5'>
                         <img className='w-14 rounded-full' src={service.serviceProviderImg} alt="" />

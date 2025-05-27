@@ -13,14 +13,14 @@ import ManageService from '../pages/ManageService';
 import EditService from '../pages/EditService';
 import BookedServices from '../pages/BookedServices';
 import ServicesToDo from '../pages/ServicesToDo';
-import ServiceCard from '../componenets/ServiceCard';
+import ErrorComponent from '../componenets/ErrorComponent';
 
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Main></Main>,
-        errorElement: <h2>Error Found</h2>,
+        errorElement: <ErrorComponent></ErrorComponent>,
         children: [
             {
                 path: '/',

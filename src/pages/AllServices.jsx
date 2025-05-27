@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const AllServices = () => {
@@ -17,7 +18,7 @@ const AllServices = () => {
 
     return (
         <div>
-            <div className='flex items-center'>
+            <div className='flex flex-col md:flex-row items-center '>
                 <h2 className='text-center font-bold text-4xl my-10 flex-1'>All services Available To Book</h2>
                 <div>
                     <label className="input">
@@ -37,7 +38,7 @@ const AllServices = () => {
                     </label>
                 </div>
             </div>
-            <div className='grid grid-cols-1 lg:grid-cols-3 gap-10 my-10 w-9/12 mx-auto'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-10 lg:w-9/12 mx-auto'>
                 {
                     services.map(service => {
                         return (
@@ -59,6 +60,8 @@ const AllServices = () => {
                                             <img className='w-14 rounded-full' src={service.serviceProviderImg} alt="" />
                                             <p className='text-lg'>Service by: <span className='font-bold'>{service.serviceProviderName}</span></p>
                                         </div>
+                                        <p className='flex gap-2'>Area: <FaMapMarkerAlt /> <span className='font-bold'>{service.area}</span></p>
+
                                         <p className='text-lg'>Price: $<span className='font-bold'>{service.price}</span></p>
                                     </div>
                                 </div>

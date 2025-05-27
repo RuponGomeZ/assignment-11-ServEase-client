@@ -20,7 +20,7 @@ const ManageService = () => {
                 console.error(err);
             });
 
-        console.log(data);
+        // console.log(data);
     }, [user?.email, data]);
 
 
@@ -35,7 +35,7 @@ const ManageService = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/manageService/${id}`)
+                axios.delete(`http://localhost:5000/manageService/${id}`, { withCredentials: true })
                     .then(res => {
                         // toast.success(`${service} deleted successfully`)
                         Swal.fire({

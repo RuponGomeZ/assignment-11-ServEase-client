@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import AuthContext from '../Authontication/Authcontext';
 import toast, { Toaster } from 'react-hot-toast';
 import ToggleTheme from './ToggleTheme';
@@ -7,6 +7,7 @@ import ToggleTheme from './ToggleTheme';
 const Navbar = () => {
 
     const { user, signOutUser } = useContext(AuthContext)
+    const location = useLocation()
 
     const handleSignOut = () => {
         signOutUser()
@@ -62,7 +63,14 @@ const Navbar = () => {
                 <ToggleTheme></ToggleTheme>
                 <a className="font-bold underline">{user?.displayName}</a>
                 {
-                    user ? <button className='hidden lg:block' onClick={handleSignOut}>Logout</button> : <Link to={'/login'}>Login</Link>
+                    user ? (
+                        <button className='hidden lg:block' onClick={handleSignOut}>Logout</button>
+                    ) : (location.pathname === '/login' ? (
+                        <Link to="/register">Register</Link>
+                    ) : (
+                        <Link to="/login">Login</Link>
+                    )
+                    )
                 }
             </div>
             <Toaster />

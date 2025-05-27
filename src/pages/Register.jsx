@@ -10,9 +10,14 @@ const Register = () => {
 
     const { signupWithEmailAndPassword, signOutUser, updateUserProfile, setUser, user, googleLogin } = useContext(AuthContext);
 
+
+
     const location = useLocation()
     const navigate = useNavigate()
     const from = location?.state || '/'
+
+    if (user?.email) return navigate('/')
+
     const handleGoogleLogin = () => {
         googleLogin()
             .then(result => {

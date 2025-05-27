@@ -5,12 +5,15 @@ import { Link } from 'react-router-dom';
 const AllServices = () => {
 
     const [services, setServices] = useState([])
+    const [search, setSearch] = useState('')
 
+
+    console.log(search);
     useEffect(() => {
-        axios.get('http://localhost:5000/services')
+        axios.get(`http://localhost:5000/services?search=${search}`)
             .then(res => setServices(res.data))
             .catch(error => console.log(error))
-    }, [])
+    }, [search])
 
     return (
         <div>
@@ -30,7 +33,7 @@ const AllServices = () => {
                                 <path d="m21 21-4.3-4.3"></path>
                             </g>
                         </svg>
-                        <input type="search" required placeholder="Search" />
+                        <input onChange={e => setSearch(e.target.value)} type="search" required placeholder="Search" />
                     </label>
                 </div>
             </div>

@@ -13,7 +13,7 @@ const ClientReviews = () => {
                 <div className='w-72 items-center bg-blue-200 text-white p-5 rounded-lg'>
                     <img className='w-40 mx-auto rounded-full  border-white border-2 ' src={person1} alt="" />
                     <div className='border-white bg-black rounded-lg border-2 p-5 mt-4'>
-                        <h4 className='font-bold text-lg text-center'>Jhonkar Mahbub</h4>
+                        <h4 className='font-bold text-lg text-center'>Asiful Shaha</h4>
                         <p>Rating: <div className="rating">
                             <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" aria-label="1 star" />
                             <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" aria-label="2 star" />

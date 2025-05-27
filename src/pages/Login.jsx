@@ -12,8 +12,9 @@ const Login = () => {
     const location = useLocation()
     const from = location?.state || '/'
 
-    const { loginUser, googleLogin } = useContext(AuthContext)
+    const { loginUser, googleLogin, user } = useContext(AuthContext)
 
+    if (user?.email) return navigate('/')
     const handleSubmit = (e) => {
         e.preventDefault()
         const form = e.target;

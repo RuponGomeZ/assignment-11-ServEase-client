@@ -50,7 +50,7 @@ const AddService = () => {
 
     return (
         <div>
-            <div className="card bg-base-100 mx-auto mt-14 w-full max-w-sm shrink-0 shadow-2xl">
+            <div className="card bg-base-100 mx-auto p-10 mt-14 w-full max-w-sm shrink-0 shadow-2xl">
                 <div className="card-body"></div>
                 <form onSubmit={handleSubmit} className="fieldset">
 

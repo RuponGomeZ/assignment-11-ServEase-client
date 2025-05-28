@@ -22,7 +22,7 @@ const EditService = () => {
 
 
 
-        axios.patch(`http://localhost:5000/editService/${_id}`, serviceUpdateData, { withCredentials: true })
+        axios.patch(`https://serv-ease-server-rupongomez-rupongomezs-projects.vercel.app/editService/${_id}`, serviceUpdateData, { withCredentials: true })
             .then(res => {
                 toast.success('Updated Successfully')
                 navigate('/manageService')

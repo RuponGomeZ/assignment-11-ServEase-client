@@ -13,7 +13,7 @@ const AddService = () => {
 
     const { mutateAsync } = useMutation({
         mutationFn: async serviceData => {
-            await axios.post('http://localhost:5000/addService', serviceData)
+            await axios.post('https://serv-ease-server-rupongomez-rupongomezs-projects.vercel.app/addService', serviceData)
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['services'] })
@@ -35,7 +35,7 @@ const AddService = () => {
         console.log(img, service, price, area);
         const serviceData = { img, service, price, area, description, serviceProviderEmail, serviceProviderImg, serviceProviderName };
 
-        // axios.post('http://localhost:5000/addService', serviceData)
+        // axios.post('https://serv-ease-server-rupongomez-rupongomezs-projects.vercel.app/addService', serviceData)
         //     .then(res => console.log(res))
 
         try {

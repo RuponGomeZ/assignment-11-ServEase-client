@@ -12,7 +12,7 @@ const AllServices = () => {
 
     console.log(search);
     useEffect(() => {
-        axios.get(`http://localhost:5000/services?search=${search}`)
+        axios.get(`https://serv-ease-server-rupongomez-rupongomezs-projects.vercel.app/services?search=${search}`)
             .then(res => setServices(res.data))
             .catch(error => console.log(error))
     }, [search])

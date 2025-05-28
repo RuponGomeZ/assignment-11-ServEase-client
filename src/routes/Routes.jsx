@@ -49,12 +49,12 @@ const router = createBrowserRouter([
             {
                 path: '/serviceDetails/:id',
                 element: <PrivateRoute><ServiceDetails></ServiceDetails></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/serviceDetails/${params.id}`)
+                loader: ({ params }) => fetch(`https://serv-ease-server-rupongomez-rupongomezs-projects.vercel.app/serviceDetails/${params.id}`)
             },
             {
                 path: '/bookService/:id',
                 element: <PrivateRoute><BookService></BookService></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/serviceDetails/${params.id}`)
+                loader: ({ params }) => fetch(`https://serv-ease-server-rupongomez-rupongomezs-projects.vercel.app/serviceDetails/${params.id}`)
             },
             {
                 path: '/manageService',
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
             {
                 path: '/editService/:id',
                 element: <PrivateRoute><EditService></EditService></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/serviceDetails/${params.id}`)
+                loader: ({ params }) => fetch(`https://serv-ease-server-rupongomez-rupongomezs-projects.vercel.app/serviceDetails/${params.id}`)
             },
             {
                 path: '/bookedServices',

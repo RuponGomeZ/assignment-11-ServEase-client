@@ -16,7 +16,7 @@ const BookedServices = () => {
     useEffect(() => {
         if (!user?.email) return;
         axios
-            .get(`http://localhost:5000/bookService/${user.email}`, { withCredentials: true })
+            .get(`https://serv-ease-server-rupongomez-rupongomezs-projects.vercel.app//${user.email}`, { withCredentials: true })
             .then((res) => {
                 setBookServices(res.data);
             })

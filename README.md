@@ -1,12 +1,176 @@
-# React + Vite
+# 🚀 ServEase Backend — Service Sharing Web Application API
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the backend server for **ServEase**, a service-sharing web application that allows users to manage, book, and update services. Built with Express.js and MongoDB, this RESTful API supports JWT-based authentication and secure CRUD operations.
 
-Currently, two official plugins are available:
+## 📦 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔐 **JWT Authentication**
+  - Secure login/logout via cookies
+  - Protected routes using middleware
+- 🛠️ **Service Management**
+  - Add, Update, Delete personal services
+- 🛍️ **Booking System**
+  - Book any service
+  - View all booked services
+  - Update booking status (`pending`, `working`, `completed`)
+- 🔍 **Search Functionality**
+  - Search services by name
+- 🧪 RESTful API
+  - Clean, predictable endpoints
+  - Consistent JSON responses
+  - Error handling with status codes
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🧰 Technologies Used
+
+| Category       | Technology                            |
+| -------------- | ------------------------------------- |
+| Backend        | Node.js, Express.js                   |
+| Database       | MongoDB Atlas                         |
+| Authentication | JWT (JSON Web Tokens)                 |
+| Deployment     | Vercel                                |
+| Utilities      | Mongoose, Cors, Dotenv, Cookie Parser |
+
+---
+
+## 🌐 Base URL
+
+All API requests should be made to:
+
+```
+https://serv-ease-server-rupongomez-rupongomezs-projects.vercel.app/
+```
+
+---
+
+## 📥 Endpoints
+
+### 🔐 Authentication
+
+| Method | Route     | Description                           |
+| ------ | --------- | ------------------------------------- |
+| POST   | `/jwt`    | Set JWT cookie after successful login |
+| GET    | `/logout` | Clear JWT cookie (logout user)        |
+
+---
+
+### 🛠️ Services
+
+| Method | Route                 | Description                        |
+| ------ | --------------------- | ---------------------------------- |
+| POST   | `/addService`         | Add a new service                  |
+| GET    | `/services`           | Get all services (supports search) |
+| GET    | `/serviceDetails/:id` | Get details of a single service    |
+| PATCH  | `/editService/:id`    | Update an existing service         |
+| DELETE | `/manageService/:id`  | Delete a service                   |
+
+---
+
+### 🛍️ Booking System
+
+| Method | Route                           | Description                         |
+| ------ | ------------------------------- | ----------------------------------- |
+| POST   | `/bookService`                  | Book a service                      |
+| GET    | `/bookService/:email`           | Get all services booked by a user   |
+| GET    | `/servicesToDo/:email`          | Get services booked from a provider |
+| PATCH  | `/serviceToDo/changeStatus/:id` | Update service booking status       |
+
+---
+
+## 🛡️ Protected Routes
+
+The following routes require a valid JWT token:
+
+- `GET /bookService/:email`
+- `GET /servicesToDo/:email`
+- `PATCH /serviceToDo/changeStatus/:id`
+- `GET /manageService/:email`
+- `DELETE /manageService/:id`
+- `PATCH /editService/:id`
+
+Authentication is handled using middleware: `verifyToken`.
+
+---
+
+## 📁 Sample Request Format
+
+### Add a New Service
+
+```json
+POST /addService
+
+{
+  "img": "https://example.com/service.jpg",
+  "service": "Home Repair",
+  "price": 50,
+  "area": "Dhaka",
+  "description": "Quick home repair at affordable price.",
+  "serviceProviderName": "John Doe",
+  "serviceProviderEmail": "john@example.com",
+  "serviceProviderImg": "https://example.com/user.jpg"
+}
+```
+
+---
+
+## 🔐 JWT Authentication Flow
+
+1. After logging in via Firebase on the frontend, user email is sent to:
+   ```
+   POST https://serv-ease-server-rupongomez-rupongomezs-projects.vercel.app/jwt
+   ```
+2. Server generates a JWT token and sets it as a secure HTTP-only cookie.
+3. Token is sent with every request to protected routes.
+4. On logout, the cookie is cleared:
+   ```
+   GET https://serv-ease-server-rupongomez-rupongomezs-projects.vercel.app/logout
+   ```
+
+---
+
+## 📝 Notes
+
+- All sensitive data (Firebase keys, DB credentials) are hidden using environment variables.
+- CORS is configured to allow requests only from trusted origins.
+- Cookies are set with `secure: true`, `httpOnly: true`, and `sameSite: 'none'`.
+- Uses MongoDB for scalable and flexible data storage.
+- Fully deployed on **Vercel**.
+
+---
+
+## 📦 Environment Variables
+
+Create a `.env` file with the following:
+
+```env
+PORT=5000
+ACCESS_TOKEN_SECRET=your_jwt_secret_key
+MONGODB_URI=mongodb+srv://username:password@cluster0.u6wg9.mongodb.net/ServEase?retryWrites=true&w=majority
+```
+
+> ⚠️ Replace values with your actual secrets before deployment.
+
+---
+
+## 📈 Commit History Strategy (for 8+ commits)
+
+Here’s how you can structure your Git commit history:
+
+| Type     | Example Messages                                    |
+| -------- | --------------------------------------------------- |
+| Setup    | `Init express server`, `Connect MongoDB`            |
+| Auth     | `Add JWT token setup`, `Fix cookie security`        |
+| API      | `Create addService route`, `Implement bookings API` |
+| Security | `Add verifyToken middleware`, `Secure headers`      |
+| Fixes    | `Fix CORS issues`, `Improve error handling`         |
+
+---
+
+Let me know if you want:
+
+- A version of this README with badges (license, build status, etc.)
+- Screenshots or sample API response images
+- A Postman collection link for testing APIs
+
+I'm ready to help finalize your backend documentation! 🚀

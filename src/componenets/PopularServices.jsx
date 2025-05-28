@@ -7,7 +7,7 @@ const PopularServices = () => {
     const [services, setServices] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/services')
+        axios.get('https://serv-ease-server-rupongomez-rupongomezs-projects.vercel.app/services')
             .then(res => {
                 setServices(res.data);
                 console.log(res.data);

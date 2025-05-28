@@ -16,7 +16,7 @@ const ManageService = () => {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/manageService/${user.email}`)
+        axios.get(`https://serv-ease-server-rupongomez-rupongomezs-projects.vercel.app/manageService/${user.email}`)
             .then(res => {
                 setData(res.data);
             })
@@ -39,7 +39,7 @@ const ManageService = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/manageService/${id}`, { withCredentials: true })
+                axios.delete(`https://serv-ease-server-rupongomez-rupongomezs-projects.vercel.app/manageService/${id}`, { withCredentials: true })
                     .then(res => {
                         // toast.success(`${service} deleted successfully`)
                         Swal.fire({

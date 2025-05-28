@@ -16,7 +16,7 @@ const ServicesToDo = () => {
 
     useEffect(() => {
         if (!user?.email) return;
-        axios.get(`http://localhost:5000/servicesToDo/${user.email}`, { withCredentials: true })
+        axios.get(`https://serv-ease-server-rupongomez-rupongomezs-projects.vercel.app/servicesToDo/${user.email}`, { withCredentials: true })
             .then(res => {
                 setBookServices(res.data);
             })
@@ -43,10 +43,10 @@ const ServicesToDo = () => {
             });
         }
 
-        axios.patch(`http://localhost:5000/serviceToDo/changeStatus/${id}`, { serviceStatus: status }, { withCredentials: true })
+        axios.patch(`https://serv-ease-server-rupongomez-rupongomezs-projects.vercel.app/serviceToDo/changeStatus/${id}`, { serviceStatus: status }, { withCredentials: true })
             .then(() => {
                 toast.success('Status changed successfully.');
-                axios.get(`http://localhost:5000/servicesToDo/${user.email}`)
+                axios.get(`https://serv-ease-server-rupongomez-rupongomezs-projects.vercel.app/servicesToDo/${user.email}`)
                     .then(res => setBookServices(res.data));
             })
             .catch(error => {

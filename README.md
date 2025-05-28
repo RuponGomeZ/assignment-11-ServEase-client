@@ -139,20 +139,6 @@ POST /addService
 
 ---
 
-## 📦 Environment Variables
-
-Create a `.env` file with the following:
-
-```env
-PORT=5000
-ACCESS_TOKEN_SECRET=your_jwt_secret_key
-MONGODB_URI=mongodb+srv://username:password@cluster0.u6wg9.mongodb.net/ServEase?retryWrites=true&w=majority
-```
-
-> ⚠️ Replace values with your actual secrets before deployment.
-
----
-
 ## 📈 Commit History Strategy (for 8+ commits)
 
 Here’s how you can structure your Git commit history:

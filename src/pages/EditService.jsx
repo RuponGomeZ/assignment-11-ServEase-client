@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import toast from 'react-hot-toast';
 import { useLoaderData, useNavigate } from 'react-router-dom';
+import PageTitle from '../componenets/PageTitle';
 
 const EditService = () => {
     // const id = useParams()
@@ -34,6 +35,8 @@ const EditService = () => {
     // console.log(id);
     return (
         <div>
+            <PageTitle title="Edit Service"></PageTitle>
+
             <div className="card bg-base-100 mx-auto mt-14 w-full max-w-sm shrink-0 shadow-2xl">
                 <div className="card-body p5">
                     <h2 className='font-bold text-2xl text-center'>Update {service}</h2>

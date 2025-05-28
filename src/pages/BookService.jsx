@@ -6,6 +6,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import DatePicker from 'react-datepicker';
 import axios from 'axios';
+import PageTitle from '../componenets/PageTitle';
 
 
 const BookService = () => {
@@ -67,6 +68,7 @@ const BookService = () => {
 
     return (
         <div>
+            <PageTitle title="Book Service"></PageTitle>
             <div className="card bg-base-100 mx-auto mt-14 w-full max-w-sm shrink-0 shadow-2xl ">
                 <div className="card-body"></div>
                 <h2 className='text-center font-bold text-2xl'>Book {service}</h2>

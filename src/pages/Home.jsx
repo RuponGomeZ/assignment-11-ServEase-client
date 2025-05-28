@@ -5,6 +5,7 @@ import ClientReviews from '../componenets/ClientReviews';
 import { easeInOut, motion } from 'framer-motion';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
+import PageTitle from '../componenets/PageTitle';
 const Home = () => {
 
     useEffect(() => {
@@ -13,6 +14,8 @@ const Home = () => {
 
     return (
         <div className=' mt-32' data-aos="fade-left">
+            <PageTitle title=""></PageTitle>
+
             <motion.h2
                 className='text-center font-bold text-4xl mb-7'
                 animate={{

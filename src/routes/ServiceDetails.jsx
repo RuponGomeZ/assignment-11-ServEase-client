@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { Link, useLoaderData } from 'react-router-dom';
+import PageTitle from '../componenets/PageTitle';
 
 const ServiceDetails = () => {
     const {
@@ -17,6 +18,8 @@ const ServiceDetails = () => {
 
     return (
         <div className="flex flex-col items-center px-4 py-6 mx-auto container max-w-full">
+            <PageTitle title="Service Details"></PageTitle>
+
             {/* Service Provider Info */}
             <div className="bg-blue-400 p-5 rounded-md w-full max-w-md text-center shadow-md mb-6">
                 <h2 className="font-bold mb-4 text-lg">Service Provider Info</h2>

@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Lottie from 'lottie-react';
 import empty from '../assets/empty.json';
+import PageTitle from '../componenets/PageTitle';
 
 const BookedServices = () => {
     const [bookServices, setBookServices] = useState([]);
@@ -31,6 +32,8 @@ const BookedServices = () => {
 
     return (
         <div className="mt-14 px-4">
+            <PageTitle title="Booked Services"></PageTitle>
+
             {bookServices.length === 0 ? (
                 <div className="text-center">
                     <p className="font-bold text-2xl md:text-3xl">You Haven't Booked Any Order Yet</p>

@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import AuthContext from '../Authontication/Authcontext';
 import toast from 'react-hot-toast';
 import { FaGoogle } from 'react-icons/fa';
+import PageTitle from '../componenets/PageTitle';
 
 const Register = () => {
 
@@ -61,6 +62,7 @@ const Register = () => {
 
     return (
         <div className="hero bg-base-200 min-h-screen flex items-center justify-center">
+            <PageTitle title="Register"></PageTitle>
             <div className="hero-content flex-col gap-20 lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
                     <Lottie className='w-96' animationData={signupAnimation}></Lottie>

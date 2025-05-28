@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import PageTitle from '../componenets/PageTitle';
 
 const AllServices = () => {
 
@@ -18,6 +19,7 @@ const AllServices = () => {
 
     return (
         <div>
+            <PageTitle title="All Services"></PageTitle>
             <div className='flex flex-col md:flex-row items-center '>
                 <h2 className='text-center font-bold text-4xl my-10 flex-1'>All services Available To Book</h2>
                 <div>

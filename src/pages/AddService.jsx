@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useContext } from 'react';
 import toast from 'react-hot-toast';
 import AuthContext from '../Authontication/Authcontext';
+import PageTitle from '../componenets/PageTitle';
 
 const AddService = () => {
 
@@ -50,6 +51,7 @@ const AddService = () => {
 
     return (
         <div>
+            <PageTitle title="Add Service"></PageTitle>
             <div className="card bg-base-100 mx-auto p-10 mt-14 w-full max-w-sm shrink-0 shadow-2xl">
                 <div className="card-body"></div>
                 <form onSubmit={handleSubmit} className="fieldset">
@@ -78,7 +80,7 @@ const AddService = () => {
                     <button className="btn btn-neutral mt-4">Add your service</button>
                 </form>
             </div>
-        </div>
+        </div >
     );
 };
 

@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Lottie from 'lottie-react';
 import empty from '../assets/empty.json';
+import PageTitle from '../componenets/PageTitle';
 
 const ServicesToDo = () => {
     const [bookServices, setBookServices] = useState([]);
@@ -62,6 +63,8 @@ const ServicesToDo = () => {
 
     return (
         <div className="mt-14 px-4">
+            <PageTitle title="Service To Do"></PageTitle>
+
             {bookServices.length === 0 ? (
                 <div className="text-center">
                     <p className="font-bold text-2xl md:text-3xl">No Orders Yet</p>

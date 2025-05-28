@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import empty from '../assets/empty.json';
 import Lottie from 'lottie-react';
+import PageTitle from '../componenets/PageTitle';
 
 
 const ManageService = () => {
@@ -60,6 +61,7 @@ const ManageService = () => {
 
     return (
         <div>
+            <PageTitle title="Manage Service"></PageTitle>
             {data.length === 0 ? (
                 <div className='font-bold text-2xl text-center mt-5'>
                     <h2>You haven't add any service yet</h2>

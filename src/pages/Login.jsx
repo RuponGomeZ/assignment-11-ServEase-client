@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import AuthContext from '../Authontication/Authcontext';
 import toast from 'react-hot-toast';
 import { FaGoogle } from 'react-icons/fa';
+import PageTitle from '../componenets/PageTitle';
 
 const Login = () => {
 
@@ -47,6 +48,7 @@ const Login = () => {
 
     return (
         <div>
+            <PageTitle title="Login"></PageTitle>
             <div className="hero bg-base-200 min-h-screen flex items-center justify-center">
                 <div className="hero-content flex-col gap-20 lg:flex-row-reverse">
                     <div className="text-center lg:text-left">

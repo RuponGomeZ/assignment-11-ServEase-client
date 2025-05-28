@@ -14,7 +14,7 @@ const Home = () => {
 
     return (
         <div className=' mt-32' data-aos="fade-left">
-            <PageTitle title=""></PageTitle>
+            <PageTitle title="Home"></PageTitle>
 
             <motion.h2
                 className='text-center font-bold text-4xl mb-7'
